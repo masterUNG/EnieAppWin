@@ -10,13 +10,50 @@ class MyDialog {
     required this.context,
   });
 
-  Future<void> normalDialog(
-      {required String title, required String subTitle}) async {
+  Future<void> promotionDialog({
+    required String title,
+    required String urlPath,
+    required Function() pressFunc,
+  }) async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Stack(
+          children: [
+            Image.network(urlPath),
+            Positioned(
+              left: 16,
+              top: 16,
+              child: ShowText(
+                label: title,
+                textStyle: Myconstant().h2WhiteStyle(),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          ShowTextButton(label: 'Keep', pressFunc: pressFunc),
+          ShowTextButton(
+              label: 'Cancel',
+              pressFunc: () {
+                Navigator.pop(context);
+              }),
+        ],
+      ),
+    );
+  }
+
+  Future<void> normalDialog({
+    required String title,
+    required String subTitle,
+    String? label,
+    Function()? pressFunc,
+  }) async {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: ListTile(
-          leading: SizedBox(
+          leading: const SizedBox(
             width: 80,
             child: ShowImage(),
           ),
@@ -27,8 +64,11 @@ class MyDialog {
           subtitle: ShowText(label: subTitle),
         ),
         actions: [
+          (label != null) && (pressFunc != null)
+              ? ShowTextButton(label: label, pressFunc: pressFunc)
+              : const SizedBox(),
           ShowTextButton(
-            label: 'ok',
+            label: label == null ? 'OK' : 'Cancel',
             pressFunc: () {
               Navigator.pop(context);
             },

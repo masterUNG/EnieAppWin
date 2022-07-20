@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1069056242092",
+    "project_id": "enieapp",
+    "storage_bucket": "enieapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069056242092:android:d795d3d1492c33233a4a09",
+        "android_client_info": {
+          "package_name": "com.eniefantasy.enie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069056242092-fupedjvofhvbg772pm8r003f6ccgjhqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA48GTkzDC-vHptsP_SG_LLVYGqIrDEIKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069056242092-fupedjvofhvbg772pm8r003f6ccgjhqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

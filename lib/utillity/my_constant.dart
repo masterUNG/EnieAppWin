@@ -62,6 +62,13 @@ class Myconstant {
         fontWeight: FontWeight.w700,
       ));
 
+       TextStyle h2WhiteStyle() => GoogleFonts.notoSansThai(
+          textStyle: const TextStyle(
+        fontSize: 22,
+        color: Colors.white,
+        fontWeight: FontWeight.w700,
+      ));
+
   TextStyle h3Style() => GoogleFonts.notoSansThai(
           textStyle: TextStyle(
         fontSize: 14,

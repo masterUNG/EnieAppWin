@@ -118,7 +118,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     widget: newAccetp(),
                   ),
                   newCenter(
-                    widget: BuildInputUser(),
+                    widget: buildInputUser(),
                   ),
                   const SizedBox(
                     height: 100,
@@ -173,7 +173,7 @@ class _CreateAccountState extends State<CreateAccount> {
               Padding(
                 padding: EdgeInsets.all(24.0),
                 child: file == null
-                    ? ShowImage(
+                    ? const ShowImage(
                         path: 'images/salon_picture.png',
                       )
                     : Image.file(file!),
@@ -228,6 +228,7 @@ class _CreateAccountState extends State<CreateAccount> {
         ),
         actions: [
           ShowButton(
+            size: 90,
             label: 'Camera',
             pressFunc: () {
               Navigator.pop(context);
@@ -235,6 +236,7 @@ class _CreateAccountState extends State<CreateAccount> {
             },
           ),
           ShowButton(
+            size: 80,
             label: 'Gallery',
             pressFunc: () {
               Navigator.pop(context);
@@ -242,6 +244,7 @@ class _CreateAccountState extends State<CreateAccount> {
             },
           ),
           ShowButton(
+            size: 80,
             label: 'Cancel',
             pressFunc: () {
               Navigator.pop(context);
@@ -415,46 +418,48 @@ class _CreateAccountState extends State<CreateAccount> {
   IconButton buildCreateNewAccount() {
     return IconButton(
       onPressed: () {
-        if (formkey.currentState!.validate()) {
-          print('Process Insert to Database');
-
-          processCreateAccount();
-        }
+        processClickCreateAccountOrCloudUpload();
       },
       icon: Icon(Icons.cloud_upload),
     );
   }
 
-  Container BuildInputUser() {
+  Container buildInputUser() {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 16),
       child: ShowButton(
           label: 'สมัครใช้งาน',
           pressFunc: () {
-            if (formkey.currentState!.validate()) {
-              processCreateAccount();
-            }
+            processClickCreateAccountOrCloudUpload();
           }),
     );
   }
 
-  Future<void> processCreateAccount() async {
-    if ((indexProvince == null) ||
-        (indexDistrict == null) ||
-        (indexSubDistrict == null)) {
-      MyDialog(context: context).normalDialog(
-          title: 'Choose ไม่ครบ',
-          subTitle: 'โปรดเลือก จังหวัด, อำเภอ และ ตำบล');
-    } else if (accept) {
-      uploadPictureAndInsertData();
-    } else {
-      MyDialog(context: context).normalDialog(
-          title: 'ยังไม่ยอมรับ เงื่อนไข',
-          subTitle: 'กรุณายอมรับเงิื่อนไขด้วยครับ');
+  void processClickCreateAccountOrCloudUpload() {
+    if (formkey.currentState!.validate()) {
+      if ((indexProvince == null) ||
+          (indexDistrict == null) ||
+          (indexSubDistrict == null)) {
+        MyDialog(context: context).normalDialog(
+            title: 'Choose ไม่ครบ',
+            subTitle: 'โปรดเลือก จังหวัด, อำเภอ และ ตำบล');
+      } else if (accept) {
+        if (file == null) {
+          //No Photo
+          processInsertNewAccount();
+        } else {
+          //Take Photo
+
+        }
+      } else {
+        MyDialog(context: context).normalDialog(
+            title: 'ยังไม่ยอมรับ เงื่อนไข',
+            subTitle: 'กรุณายอมรับเงิื่อนไขด้วยครับ');
+      }
     }
   }
 
-  Future<Null> uploadPictureAndInsertData() async {
+  Future<void> processInsertNewAccount() async {
     String salon_name = nameController.text;
     String salon_email = emailController.text;
     String salon_phone = phoneController.text;

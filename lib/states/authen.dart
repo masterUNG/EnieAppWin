@@ -2,8 +2,11 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:enie/models/salon_model.dart';
+import 'package:enie/states/page_non_login.dart';
+import 'package:enie/states/page_require_login.dart';
 import 'package:enie/utillity/my_constant.dart';
 import 'package:enie/utillity/my_dialog.dart';
+import 'package:enie/widgets/demo_test_login.dart';
 import 'package:enie/widgets/show_image.dart';
 import 'package:enie/widgets/show_text.dart';
 import 'package:enie/widgets/show_text_button.dart';
@@ -58,7 +61,8 @@ class _AuthenState extends State<Authen> {
                       buildPassword(size),
                       newForgotPassword(),
                       newButtonLogin(),
-                      newCreateAccount()
+                      newCreateAccount(),
+                      DamoTestLogin(),
                     ],
                   ),
                 ),
@@ -174,7 +178,11 @@ class _AuthenState extends State<Authen> {
                 borderRadius: BorderRadius.circular(30),
               ),
               errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red),
+                borderSide: const BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.red),
                 borderRadius: BorderRadius.circular(30),
               ),
             ),
@@ -238,6 +246,10 @@ class _AuthenState extends State<Authen> {
                 borderSide: BorderSide(color: Colors.red),
                 borderRadius: BorderRadius.circular(30),
               ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.circular(30),
+              ),
             ),
           ),
         ),
@@ -259,3 +271,5 @@ class _AuthenState extends State<Authen> {
     );
   }
 }
+
+
