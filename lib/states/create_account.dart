@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:dio/dio.dart';
-import 'package:enie/main.dart';
 import 'package:enie/models/district_model.dart';
 import 'package:enie/models/province_model.dart';
 import 'package:enie/models/sub_district_model.dart';
@@ -17,7 +15,6 @@ import 'package:enie/widgets/show_title.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:enie/widgets/show_image.dart';
 import 'package:enie/widgets/show_progress.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
@@ -199,14 +196,17 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
 // การเลือกถ่ายรูป หรือ ดึงรูปจาก แกลอรี่ มาแสดง
-  Future<Null> takePhoto(ImageSource imageSource) async {
-    try {
-      var result = await ImagePicker()
-          .getImage(source: imageSource, maxWidth: 800, maxHeight: 800);
+  Future<void> takePhoto(ImageSource imageSource) async {
+    var result = await ImagePicker().pickImage(
+      source: imageSource,
+      maxWidth: 800,
+      maxHeight: 800,
+    );
+    if (result != null) {
       setState(() {
-        file = File(result!.path);
+        file = File(result.path);
       });
-    } catch (e) {}
+    }
   }
 
   Future<void> dialogChoosePhoto() async {

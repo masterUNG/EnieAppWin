@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:enie/states/authen.dart';
@@ -10,9 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final Map<String, WidgetBuilder> map = {
-  Myconstant.routeAuthen: (BuildContext context) => Authen(),
-  Myconstant.rountCreateAccount: (BuildContext context) => CreateAccount(),
-  Myconstant.rountMyservice: (BuildContext context) => MyService(),
+  Myconstant.routeAuthen: (BuildContext context) => const Authen(),
+  Myconstant.rountCreateAccount: (BuildContext context) => const CreateAccount(),
+  Myconstant.rountMyservice: (BuildContext context) => const MyService(),
   Myconstant.rountPrivacyPolicy: (BuildContext context) => PrivacyPolicy(),
 
   //home
@@ -21,17 +23,17 @@ final Map<String, WidgetBuilder> map = {
 
 String? initlalRoute;
 
-Future<Null> main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
   String? username = preferences.getString('username');
   print('### username ===>> $username');
   if (username?.isEmpty ?? true) {
     initlalRoute = Myconstant.routeAuthen;
-    runApp(MyApp());
+    runApp(const MyApp());
   } else {
     initlalRoute = Myconstant.rountHomeScreen;
-    runApp(MyApp());
+    runApp(const MyApp());
   }
 }
 
