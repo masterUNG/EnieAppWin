@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 class Myconstant {
   //field
 
+  static String urlPromPay = 'https://firebasestorage.googleapis.com/v0/b/enieapp.appspot.com/o/prompay%2Fqrui-1658391873559.png?alt=media&token=709dc448-0e61-4464-8ad9-1e00cc6f0e9e';
+
   static String pathApiReadAllProvince =
       'https://office.fantasy.co.th/api/salon/province/all';
   static String pathApiReadDistrictByProvinceId =
@@ -62,7 +64,7 @@ class Myconstant {
         fontWeight: FontWeight.w700,
       ));
 
-       TextStyle h2WhiteStyle() => GoogleFonts.notoSansThai(
+  TextStyle h2WhiteStyle() => GoogleFonts.notoSansThai(
           textStyle: const TextStyle(
         fontSize: 22,
         color: Colors.white,

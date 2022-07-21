@@ -26,6 +26,8 @@ final Map<String, WidgetBuilder> map = {
 String? initlalRoute;
 
 Future<void> main() async {
+  HttpOverrides.global = MyHttpOverride();
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();

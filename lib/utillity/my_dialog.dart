@@ -14,6 +14,7 @@ class MyDialog {
     required String title,
     required String urlPath,
     required Function() pressFunc,
+    String? label,
   }) async {
     showDialog(
       context: context,
@@ -32,7 +33,7 @@ class MyDialog {
           ],
         ),
         actions: [
-          ShowTextButton(label: 'Keep', pressFunc: pressFunc),
+          ShowTextButton(label: label ?? 'Keep', pressFunc: pressFunc),
           ShowTextButton(
               label: 'Cancel',
               pressFunc: () {

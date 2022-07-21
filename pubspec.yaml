@@ -45,6 +45,8 @@ dependencies:
   deep_pick: ^0.10.0
   firebase_core: ^1.19.2
   firebase_messaging: ^12.0.0
+  sqflite: ^2.0.3
+  image_gallery_saver: ^1.7.1
 
 dev_dependencies:
   flutter_test:
